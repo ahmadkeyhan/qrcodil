@@ -1,4 +1,5 @@
 import { headers } from 'next/headers'
+import GetMenu from '../../actions/getMenu';
 // export const dynamic = 'force-dynamic'
 
 // export async function generateStaticParams() {
@@ -10,28 +11,33 @@ import { headers } from 'next/headers'
 // }
 
 export default async function Page({params}) {
-  const getMenu = async () => {
-    const res = await fetch(`http://localhost:3000/api/admin/?username=${params.user}`, {
-      headers: headers()
-    })
-    return res.json()
-  }
-  const menu = await getMenu()  
-  console.log(menu) 
+  // const getMenu = async () => {
+  //   const res = await fetch(`http://localhost:3000/api/admin/?username=${params.user}`, {
+  //     headers: headers()
+  //   })
+  //   return res.json()
+  // }
+  // const menu = await getMenu()  
+  const menu = await GetMenu(params.user)
   if (menu) {
     return (
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
           <div className="flex gap-4 items-center flex-col sm:flex-row">
             <ul>
-              {menu[0].items.map((item) => {
+              {menu.categories[0].items.map((item) => {
                 return (<li>{item}</li>)
               })}
             </ul>
+            <p>nice</p>
           </div>
         </main>
       </div>
     );
+  } else {
+    return (
+      <p>pokh</p>
+    )
   }
     
 

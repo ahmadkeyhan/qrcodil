@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { testDatabaseConnection } from "./actions";
+import { testDatabaseConnection } from "../actions/connect";
 
 export default async function Home() {
   const isConnected = await testDatabaseConnection();
