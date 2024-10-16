@@ -79,22 +79,22 @@ export function Category({cat,index,user}) {
             <Draggable draggableId={`draggable${index}`} index={index}>
                 {(provided,snapshot) => (
                     <li key={index} 
-                        className={`${snapshot.isDragging? 'bg-gray-800' : 'bg-gray-900'} p-4 mb-4 w-full rounded-3xl`}
+                        className={`${snapshot.isDragging? 'bg-neutral-800' : 'bg-neutral-900'} p-4 mb-4 w-full rounded-3xl`}
                         {...provided.draggableProps}
                         ref={provided.innerRef}>
                         {editCatState ? (
                             <form id={`editCat${index}`}
                                 className='flex flex-col justify-center items-start'
                                 onSubmit={setTitle}>
-                                <div className='flex flex-row items-center justify-start w-full my-1 text-black'>
+                                <div className='flex flex-row items-center justify-start w-full my-1 text-neutral-950'>
                                     <input className='w-full rounded-full py-1 px-2' placeholder={cat.title} name={cat.title} autoFocus />
                                     <button disabled={loading} 
-                                        className="bg-gray-800 p-1.5 flex justify-center items-center text-lime-200 rounded-full ml-1 transition-colors disabled:text-white hover:bg-lime-500 hover:text-gray-950 duration-200" 
+                                        className="bg-neutral-800 text-fuchsia-50 p-1.5 flex justify-center items-center text- rounded-full mr-1 transition-colors hover:bg-green-500 hover:text-neutral-950 duration-200" 
                                         type='submit'>
                                         {loading? <mdIcons.MdStop /> : <mdIcons.MdDone />}
                                     </button>
                                     <button disabled={loading} 
-                                        className="bg-gray-800 p-1.5 flex justify-center items-center text-lime-200 rounded-full ml-1 transition-colors disabled:text-white hover:bg-rose-500 hover:text-gray-950 duration-200" 
+                                        className="bg-neutral-800 text-fuchsia-50 p-1.5 flex justify-center items-center rounded-full mr-1 transition-colors hover:bg-rose-500 hover:text-neutral-950 duration-200" 
                                         onClick={() => setEditCatState(false)}>
                                         <mdIcons.MdClose />
                                     </button>
@@ -103,18 +103,18 @@ export function Category({cat,index,user}) {
                         ) : (
                             <div className='flex flex-row items-center justify-between p-1'>
                                 <div className='flex flex-row items-center gap-1'>
-                                    <div {...provided.dragHandleProps} className='flex justify-center items-center p-1.5 bg-gray-800 text-lime-200 hover:bg-lime-500 hover:text-gray-950 duration-200 rounded-full'>
+                                    <div {...provided.dragHandleProps} className='flex justify-center items-center p-1.5 bg-neutral-800 text-fuchsia-50 hover:bg-fuchsia-500 hover:text-neutral-950 duration-200 rounded-full'>
                                         <mdIcons.MdDragIndicator />
                                     </div>
-                                    <h2 className='text-xl text-lime-500 font-bold'>{cat.title}</h2></div> 
+                                    <h2 className='text-xl text-fuchsia-500 font-bold'>{cat.title}</h2></div> 
                                 <div className='flex flex-row'>
                                     <button disabled={loading} 
-                                        className=' bg-gray-800 transition-colors p-1.5 flex justify-center items-center mr-1 text-lime-200 hover:bg-lime-500 hover:text-gray-950 duration-200 rounded-full' 
+                                        className=' bg-neutral-800 transition-colors p-1.5 flex justify-center items-center ml-1 text-fuchsia-50 hover:bg-fuchsia-500 hover:text-neutral-950 duration-200 rounded-full' 
                                         onClick={() => setEditCatState(true)}>
                                         <mdIcons.MdEdit />
                                     </button>
                                     <button disabled={loading} 
-                                        className=' bg-gray-800 transition-colors p-1.5 flex justify-center items-center text-lime-200 hover:bg-rose-500 hover:text-gray-950 duration-200 rounded-full' 
+                                        className=' bg-neutral-800 transition-colors p-1.5 flex justify-center items-center text-fuchsia-50 hover:bg-rose-500 hover:text-neutral-950 duration-200 rounded-full' 
                                         onClick={() => deleteCategory()}>
                                         <mdIcons.MdDelete />
                                     </button>
@@ -128,12 +128,12 @@ export function Category({cat,index,user}) {
                                 <div className='flex flex-row items-center justify-start w-full my-1 text-black'>
                                     <input className='w-full rounded-full py-1 px-2' placeholder={cat.subtitle} name={cat.subtitle} autoFocus />
                                     <button disabled={loading} 
-                                        className="bg-gray-800 p-1.5 text-lime-200 transition-colors duration-200 hover:text-gray-950 hover:bg-lime-500 rounded-full ml-1 disabled:text-white" 
+                                        className="bg-neutral-800 p-1.5 text-fuchsia-50 transition-colors duration-200 hover:text-neutral-950 hover:bg-green-500 rounded-full mr-1" 
                                         type='submit'>
                                         {loading? <mdIcons.MdStop /> : <mdIcons.MdDone />}
                                     </button>
                                     <button disabled={loading} 
-                                        className="bg-gray-800 p-1.5 text-lime-200 transition-colors duration-200 hover:text-gray-950 hover:bg-rose-500 rounded-full ml-1 disabled:text-white" 
+                                        className="bg-neutral-800 p-1.5 text-fuchsia-50 transition-colors duration-200 hover:text-neutral-950 hover:bg-rose-500 rounded-full mr-1" 
                                         onClick={() => setEditSubtitleState(false)}>
                                         <mdIcons.MdClose />
                                     </button>
@@ -141,9 +141,9 @@ export function Category({cat,index,user}) {
                             </form>
                         ) : (
                             <div className='flex flex-row justify-between w-full items-center px-1'>
-                                <h3 className='text-lime-300'>{cat.subtitle}</h3>
+                                <h3 className='text-fuchsia-300 text-lg'>{cat.subtitle}</h3>
                                 <button disabled={loading} 
-                                    className='flex justify-center items-center text-sm bg-gray-800 text-lime-200 transition-colors duration-200 hover:bg-lime-500 hover:text-gray-950 p-1 rounded-full' 
+                                    className='flex justify-center items-center bg-neutral-800 text-fuchsia-50 transition-colors duration-200 hover:bg-fuchsia-500 hover:text-neutral-950 p-1.5 rounded-full' 
                                     onClick={() => setEditSubtitleState(true)}>
                                     <mdIcons.MdEdit />
                                 </button>
@@ -167,7 +167,7 @@ export function Category({cat,index,user}) {
                             <div className='flex flex-row items-center justify-start w-3/4 py-1 mt-1 text-black'>
                                 <input className='w-full rounded-full px-2 py-1' name={cat.title} />
                                 <button disabled={loading} 
-                                    className="flex justify-center items-center rounded-full text-lime-200 bg-gray-800 transition-colors duration-200 hover:bg-lime-500 hover:text-gray-950 p-2 ml-2 disabled:text-white" 
+                                    className="flex justify-center items-center rounded-full text-fuchsia-50 bg-neutral-800 transition-colors duration-200 hover:bg-fuchsia-500 hover:text-neutral-950 p-2 mr-2" 
                                     type='submit'>
                                     {loading? <mdIcons.MdStop /> : <mdIcons.MdAdd />}
                                 </button>

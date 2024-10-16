@@ -32,22 +32,22 @@ export function Item({item,index,idx,user}) {
     if (defaultItem) {
         return (
             <li key={idx} 
-                className='flex flex-row items-center justify-between mt-1 w-full text-sm'>
+                className='flex flex-row items-center justify-between mt-1 w-full text-lg'>
                 {loading ? (
                     <mdIcons.MdStop />
                 ) : editState ? (
                     <form id={`editItem${index}`}
                         className='flex flex-row w-full justify-center items-start'
                         onSubmit={editItem}>
-                        <div className='flex flex-row items-center justify-start w-full my-1 text-gray-950'>
+                        <div className='flex flex-row items-center justify-start w-full my-1 text-neutral-950'>
                             <input className='w-full py-1 px-2 rounded-full' placeholder={item} name={item} autoFocus />
                             <button disabled={loading} 
-                                className="bg-gray-800 text-lime-200 transition-colors duration-200 hover:bg-lime-500 hover:text-gray-950 p-1 rounded-full ml-1 disabled:text-white" 
+                                className="bg-neutral-800 text-fuchsia-50 transition-colors duration-200 hover:bg-green-500 hover:text-neutral-950 p-1 rounded-full mr-1 disabled:text-white" 
                                 type='submit'>
                                 {loading? <mdIcons.MdStop /> : <mdIcons.MdDone />}
                             </button>
                             <button disabled={loading} 
-                                className="bg-gray-800 text-lime-200 transition-colors duration-200 hover:bg-rose-500 hover:text-gray-950 p-1 rounded-full ml-1 disabled:text-white" 
+                                className="bg-neutral-800 text-fuchsia-50 transition-colors duration-200 hover:bg-rose-500 hover:text-neutral-950 p-1 rounded-full mr-1 disabled:text-white" 
                                 onClick={() => setEditState(false)}>
                                 <mdIcons.MdClose />
                             </button>
@@ -56,24 +56,24 @@ export function Item({item,index,idx,user}) {
                 ) : (
                     <Draggable draggableId={`draggable${idx}`} index={idx}>
                         {(provided,snapshot) => (
-                            <div className={`flex flex-row justify-between w-full rounded-full ${snapshot.isDragging? 'bg-gray-700' : 'bg-gray-800'} p-1`}
+                            <div className={`flex flex-row justify-between w-full rounded-full ${snapshot.isDragging? 'bg-neutral-700' : 'bg-neutral-800'} p-1`}
                                 {...provided.draggableProps}
                                 ref={provided.innerRef}>
-                                <div className='flex flex-row items-center gap-1 text-lime-100'>
-                                    <div {...provided.dragHandleProps} className='flex justify-center items-center p-1 bg-gray-900 text-lime-200 transition-colors duration-200 hover:bg-lime-500 hover:text-gray-950 rounded-full'>
+                                <div className='flex flex-row items-center gap-1 text-fuchsia-50'>
+                                    <div {...provided.dragHandleProps} className='flex justify-center items-center p-1 bg-neutral-900 text-fuchsia-50 transition-colors duration-200 hover:bg-fuchsia-500 hover:text-neutral-950 rounded-full'>
                                         <mdIcons.MdDragIndicator />
                                     </div>
-                                    {defaultItem}
+                                    {item}
                                 </div>
                                 <div className='flex flex-row'>
                                     <button disabled={loading} 
                                         onClick={() => setEditState(true)} 
-                                        className='bg-gray-900 p-1 text-lime-200 transition-colors rounded-full mr-1 hover:bg-lime-500 hover:text-gray-950 duration-200'>
+                                        className='bg-neutral-900 p-1 text-fuchsia-50 transition-colors rounded-full ml-1 hover:bg-fuchsia-500 hover:text-neutral-950 duration-200'>
                                         <mdIcons.MdEdit />
                                     </button>
                                     <button disabled={loading} 
                                         onClick={deleteItem} 
-                                        className='bg-gray-900 p-1 text-lime-200 transition-colors rounded-full hover:bg-rose-500 hover:text-gray-950 duration-200'>
+                                        className='bg-neutral-900 p-1 text-fuchsia-50 transition-colors rounded-full hover:bg-rose-500 hover:text-neutral-950 duration-200'>
                                         <mdIcons.MdDelete />
                                     </button>
                                 </div>

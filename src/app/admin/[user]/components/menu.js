@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {Category} from './category'
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import EditMenu from '../../../../actions/editMenu'
+import * as mdIcons from 'react-icons/md'
 
 export function Menu({user,menu}) {
     const [loading,setLoading] = useState(false)
@@ -39,11 +40,13 @@ export function Menu({user,menu}) {
     }
 
     return (
-        <div className="flex items-center flex-col sm:flex-row">
+        <div className="flex items-center flex-col">
           <DragDropContext onDragEnd={onCatReorder}>
               <Droppable droppableId='droppableMenu'>
                 {(provided) => (
-                  <ul ref={provided.innerRef} {...provided.droppableProps}>
+                  <ul className='w-full'
+                    ref={provided.innerRef} 
+                    {...provided.droppableProps}>
                     {defaultMenu.categories.map((category, index) => {
                       return <Category user={user} cat={category} index={index} key={index} />
                     })}
@@ -52,18 +55,19 @@ export function Menu({user,menu}) {
                 )}
               </Droppable>
             </DragDropContext>
-          <form id='addCategory' className='text-lime-300 flex flex-col justify-center items-center' onSubmit={addCategory}>
-            <div>
-                <label htmlFor='title'>title</label>
-                <input className='' name='title' />
+          <form id='addCategory' className='text-fuchsia-100 flex flex-col justify-center gap-2 bg-neutral-900 p-4 rounded-3xl w-full' onSubmit={addCategory}>
+            <h3 className='text-fuchsia-500 font-bold text-xl'>گروه جدید</h3>
+            <div className='flex flex-row w-full justify-between items-center gap-2'>
+              <label htmlFor='title'>عنوان</label>
+              <input className='rounded-full px-2 py-1 text-neutral-950 w-full' name='title' />
             </div>
-            <div>
-                <label htmlFor='subtitle'>subtitle</label>
-                <input className='' name='subtitle' />
+            <div className='flex flex-row w-full justify-between items-center gap-2'>
+              <label htmlFor='subtitle'>توضیح</label>
+              <input className='rounded-full px-2 py-1 text-neutral-950' name='subtitle' />
+              <button disabled={loading} className="text-fuchsia-500 bg-neutral-800 transition-colors duration-200 hover:text-neutral-950 hover:bg-fuchsia-500 p-2 rounded-full" type='submit'>
+              {loading? <mdIcons.MdStop /> : <mdIcons.MdAdd />}
+              </button>
             </div>
-            <button disabled={loading} className="text-lime-500 disabled:text-white" type='submit'>
-                {loading? 'loading' : 'add category'}
-            </button>
           </form>
         </div>
     )
